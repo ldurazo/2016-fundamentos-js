@@ -1,6 +1,9 @@
 {
   "slides": [
     "00-logo",
-    "02-who-am-i"
+    "02-who-am-i",
+    "high-order-functions-01",
+    "high-order-functions-02",
+    "high-order-functions-03"
   ]
 }
