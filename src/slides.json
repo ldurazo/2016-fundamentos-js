@@ -1,11 +1,12 @@
 {
   "slides": [
-    "00-logo",
-    "02-who-am-i",
     "high-order-functions-01",
     "high-order-functions-02",
     "high-order-functions-03",
     "scope-01",
-    "scope-02"
+    "scope-02",
+    "closure-01",
+    "closure-02",
+    "scope-chain-01"
   ]
 }
