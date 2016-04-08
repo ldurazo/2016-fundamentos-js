@@ -8,6 +8,9 @@
     "closure-01",
     "closure-02",
     "scope-chain-01",
-    "hoisting-01"
+    "hoisting-01",
+    "prototype-01",
+    "prototype-02",
+    "prototype-03"
   ]
 }
