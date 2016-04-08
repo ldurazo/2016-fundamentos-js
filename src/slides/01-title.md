@@ -1,6 +1,5 @@
-background-image: url(assets/force-unleash.jpg)
-class: slide-title, bg-image, slide-red
+class: slide-title
 
-# Como ser mejor Developer
+# 8 Fundamentos de JavaScript
 
 ---

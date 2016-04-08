@@ -1,5 +1,8 @@
 {
   "slides": [
+    "00-logo",
+    "01-title",
+    "02-who-am-i",
     "high-order-functions-01",
     "high-order-functions-02",
     "high-order-functions-03",
@@ -19,6 +22,8 @@
     "contexto-03",
     "contexto-04",
     "contexto-05",
-    "contexto-06"
+    "contexto-06",
+    "wrapup",
+    "Thanks"
   ]
 }
