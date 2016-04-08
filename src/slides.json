@@ -11,6 +11,14 @@
     "hoisting-01",
     "prototype-01",
     "prototype-02",
-    "prototype-03"
+    "prototype-03",
+    "prototype-chain-01",
+    "prototype-chain-02",
+    "contexto-01",
+    "contexto-02",
+    "contexto-03",
+    "contexto-04",
+    "contexto-05",
+    "contexto-06"
   ]
 }
