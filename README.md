@@ -2,6 +2,14 @@
 
 Plática acerca de los Fundamentos de JavaScript para el Nodeschool Hermosillo 2016-04-09
 
+## Diapositivas
+
+Aquí puedes encontrar las diapositivas:
+
+http://keogh.github.io/2016-fundamentos-js
+
+Si quieres correrlas en tu local sigue las siguientes instrucciones.
+
 ## Instrucciones
 
 Para poder ver las diapositivas sigue los siguientes pasos:
