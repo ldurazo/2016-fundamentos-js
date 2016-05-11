@@ -1,5 +1,5 @@
 # Scope-Chain
 
-<img src="/assets/scope.gif" />
+<img src="assets/scope.gif" />
 
 ---
