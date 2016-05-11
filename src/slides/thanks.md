@@ -1,3 +1,0 @@
-class: slide-title
-
-# Thanks

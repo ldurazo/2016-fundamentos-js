@@ -1,0 +1,469 @@
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>JS - Nearsoft Codeschool Talk</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+<body>
+  <textarea id="source">
+    
+    <div class="ns-logo">
+      <img src="/assets/nearsoft-logo.png"/>
+    </div>
+    ---
+    
+    
+    class: slide-title
+    
+    # 8 Fundamentos de JavaScript
+    
+    ---
+    # Who am I?
+    
+    ## Isaac Zepeda
+    
+    Ruby, JavaScript
+    
+    @el_keogh
+    
+    izepeda@nearsoft.com
+    
+    github.com/keogh
+    
+    
+    ---
+    # High Order Functions
+    
+    
+    
+    ### * Toma una o mas funciones como argumentos
+    
+    ### * Regresa una función
+    
+    
+    ---
+    # High Order Functions
+    
+    ``` javascript
+    function doSomething() {
+      return 'I do something';
+    }
+    
+    function other(callback) {
+      return callback();
+    }
+    
+    other(doSomething); // return 'I do something'
+    
+    other(function () {
+      return 'I do other thing';
+    }); // Return 'I do other thing'
+    
+    var result = other(function () {
+      return function () {
+        console.log('inception');
+      }
+    });
+    result(); // prints 'inception'
+    ```
+    
+    ---
+    # High Order Functions
+    
+    ``` JavaScript
+    var numbers = [1,2,3,4,5];
+    
+    var numbersDoubled = numbers.map(function (number) {
+      return number * 2;
+    });
+    
+    console.log(numbersDoubled()); // [2,4,6,8,10]
+    ```
+    
+    ``` javascript
+    var sum = 0;
+    [1,2,3,4].forEach(function (num) {
+      sum += num;
+    });
+    console.log(sum); // 10
+    ```
+    
+    ---
+    # Scope
+    
+    El scope es a nivel de función no de bloque
+    
+    Scope Global
+    
+    Scope Local
+    
+    Cuando se usa `var` la variable queda en el scope de esa función
+    
+    Cuando NO se usa `var` la variable queda en el scope global
+    
+    Las variables pueden ver otra variable en el scope exterior
+    
+    ---
+    # Scope
+    
+    ``` javascript
+    var a = 1;
+    (function () {
+      // puede ver: a,b,x
+      var b;
+    
+      function something() {
+        // puede ver: a,b,c,x
+        var c;
+    
+        function whatever() {
+          // puede ver: a,b,c,d,x
+          var d;
+        }
+    
+        x = 5;
+      }
+    })();
+    ```
+    
+    ---
+    # Closure
+    
+    Usar variables de un scope externo (que ya terminó de ejecutarse) desde cualquier otro scope.
+    
+    ``` javascript
+    function greaterThan(n) {
+      return function(m) { 
+        return m > n; 
+      };
+    }
+    var greaterThan10 = greaterThan(10);
+    greaterThan10(11); // true
+    ```
+    
+    ---
+    # Closure
+    
+    ``` javascript
+    (function () {
+      
+      var Users = {
+        list: [],
+    
+        getAll: function () {
+          var self = this;
+          $.post('/api/users.json').then(function (resp) {
+            self.list = resp.users;
+          });
+        }
+      }
+    
+      $(document).on('ready', function () {
+        Users.getAll();
+      });
+    
+    })();
+    ```
+    
+    ---
+    # Scope-Chain
+    
+    <img src="/assets/scope.gif" />
+    
+    ---
+    # Hoisting
+    
+    Es el comportamiendo de mover las declaraciones al inicio del scope (global o de la función actual).
+    
+    De esta forma podemos usar la función o variable antes de que sea declarada.
+    
+    ``` javascript
+    foo = 2;
+    var foo;
+    
+    // Es implicitamente entendido como:
+    
+    var foo;
+    foo = 2;
+    ```
+    
+    ``` javascript
+    hoisted(); // imprime "foo"
+    
+    function hoisted() {
+      console.log("foo");
+    }
+    ```
+    
+    ---
+    # Prototype
+    
+    Cada objeto esta ligado internamente a otro objeto llamado `prototype`
+    
+    ``` javascript
+    Array.prototype.sum = function () {
+      // Fun code
+    }
+    
+    [1,2,3].sum(); // fun code happens
+    ```
+    
+    Cuando agregamos mas variables al `prototype` todas las instancias de esa función pueden acceder a esa nueva variable.
+    
+    ---
+    # Prototype
+    
+    ``` javascript
+    function Piece() {
+      // Code
+    }
+    Piece.prototype.move = function () {
+      console.log('move piece');
+    }
+    
+    function Pawn() {
+      // Code
+    }
+    Pawn.prototype = new Piece();
+    Pawn.prototype.move = function () {
+      console.log('move pawn');
+    }
+    
+    var piece = new Piece();
+    var pawn = new Pawn();
+    
+    piece.move(); // 'move piece'
+    pawn.move(); // 'move pawn'
+    ```
+    
+    ---
+    # Prototype
+    
+    ``` javascript
+    function Connector() {
+      // Code
+    }
+    Connector.prototype; // Object
+    Object.protoype; // Object
+    
+    var c = new Connector();
+    var a = {};
+    
+    c.prototype; // undefined
+    a.prototype; // undefined
+    
+    c.__proto__; // Object
+    a.__proto__; // Object
+    
+    // __proto__ no esta estandarizado
+    ```
+    
+    ---
+    # Prototype Chain
+    
+    ``` javascript
+    function A() {
+      this.x = 1;
+      this.sum = function () { return 20; }
+    }
+    
+    function B() {
+      this.y = 2;
+    }
+    B.prototype = new A();
+    
+    var b = new B();
+    
+    b.y; // 2
+    b.x; // 1
+    b.sum; // 20
+    b.toString(); // [object Object]
+    b.noExists(); // undefined
+    ```
+    
+    ---
+    # Prototype Chain
+    
+    Cuando se quiere usar una variable de un objeto el orden en que se busca es el siguiente:
+    
+    * El contexto (`this`) del objeto
+    
+    * El `prototype` del objecto
+    
+    * El `prototype` del `prototype`
+    
+    * El `prototype` del `prototype` del `prototype`
+    
+    * El `prototype` del `prototype` del `prototype` del `prototype`
+    
+    * Hasta que el `prototype` sea `null`
+    
+    ---
+    # El Contexto de una función
+    
+    El contexto es el valor del `this`
+    
+    El valor `this` o contexto depende de como se invoque la función
+    
+    Métodos de invocación:
+    
+      * Como función normal
+      
+      * Como método de un objeto
+      
+      * Con el operador `new`
+      * Usando el `call` o `apply`
+      
+      * Usando `bind`
+    
+    ---
+    # El Contexto de una función
+    
+    ``` javascript
+    function A() {
+      this.x = 1;
+      this.sum = function () {
+        return this.x + 1;
+      }
+    }
+    
+    A(); // El valor de this es window
+    window.x; // 1
+    
+    var obj = new A();
+    // El new crea un nuevo objeto y regresa este objeto nuevo
+    // El this este objeto nuevo creado
+    
+    
+    obj.x; 
+    obj.sum();
+    obj.x; // 2;
+    // Cuando se usa el punto, el objeto de la derecha es el this
+    ```
+    
+    ---
+    # El Contexto de una función
+    
+    ``` javascript
+    function multiplyBy(num) {
+      return this.x * num;
+    }
+    
+    var obj = {x: 2;}
+    var other = {x: 20}
+    
+    multiplyBy.call(obj, 2); // 4
+    multitplyBy.call(other, 2); // 40
+    
+    multiplyBy.apply(obj, [3]); // 6
+    multiplyBy.apply(other, [3]); // 60
+    ```
+    
+    ---
+    # El Contexto de una función
+    
+    `call` y `apply`
+    
+    ``` javacscript
+    var something = {
+      x: 10,
+    
+      getCalculator: function () {
+        return function () {
+          return this.x * this.x;
+        }
+      },
+    
+      init: function () {
+        var calculator = this.getCalculator();
+        return calculator();
+      }
+    }
+    
+    something.init(); // NaN
+    ```
+    
+    ---
+    # El Contexto de una función
+    
+    `call` y `apply`
+    
+    ``` javacscript
+    var something = {
+      x: 10,
+    
+      getCalculator: function () {
+        return function () {
+          return this.x * this.x;
+        }
+      },
+    
+      init: function () {
+        var calculator = this.getCalculator();
+        return calculator.apply(this);
+      }
+    }
+    
+    something.init(); // 100
+    ```
+    
+    ---
+    # El Contexto de una función
+    
+    `bind`
+    
+    ``` javascript
+    var obj = {x: 2};
+    var obj2 = {x: 5};
+    
+    var calculate = function () {
+      return this.x * 10;
+    }
+    
+    calculate(); // NaN
+    
+    var bindCalculate = calculate.bind(obj);
+    bindCalculate(); // 20
+    bindCalculate.call(obj2); // 20
+    ```
+    
+    ---
+    # 8 Fundamentos de JavaScript
+    
+    #### High-Order Functions
+    
+    #### Scope
+    
+    #### Closure
+    
+    #### Scope-chain
+    
+    #### Hoisting
+    
+    #### Prototype
+    
+    #### Prototype-chain
+    
+    #### Contexto de una función
+    
+    ---
+    
+    class: slide-title
+    
+    # Thanks
+    
+
+  </textarea>
+
+  <script type="text/javascript" src="js/remark.min.js"></script>
+  <script type="text/javascript">
+    var slideshow = remark.create({
+      navigation: {
+        scroll: false
+      },
+      slideNumberFormat: ''
+    });
+  </script>
+</body>
+</html>
