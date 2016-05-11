@@ -3,8 +3,8 @@
 ``` javascript
 function A() {
   this.x = 1;
+  this.sum = function () { return 20; }
 }
-A.prototype.sum = function () { return 20; }
 
 function B() {
   this.y = 2;

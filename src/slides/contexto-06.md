@@ -1,5 +1,7 @@
 # El Contexto de una función
 
+`bind`
+
 ``` javascript
 var obj = {x: 2};
 var obj2 = {x: 5};

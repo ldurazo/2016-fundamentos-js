@@ -1,5 +1,7 @@
 # El Contexto de una función
 
+`call` y `apply`
+
 ``` javacscript
 var something = {
   x: 10,

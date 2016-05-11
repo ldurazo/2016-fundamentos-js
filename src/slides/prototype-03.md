@@ -7,7 +7,7 @@ function Connector() {
 Connector.prototype; // Object
 Object.protoype; // Object
 
-var c = new Connector
+var c = new Connector();
 var a = {};
 
 c.prototype; // undefined
@@ -15,6 +15,8 @@ a.prototype; // undefined
 
 c.__proto__; // Object
 a.__proto__; // Object
+
+// __proto__ no esta estandarizado
 ```
 
 ---
