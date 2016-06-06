@@ -1,14 +1,19 @@
 # Who am I?
 
-## Isaac Zepeda
+Luis Durazo
 
-Ruby, JavaScript
+Java dev
 
-@el_keogh
+ldurazo@nearsoft.com
+
+github.com/ldurazo
+
+## Slides by:
+
+Isaac Zepeda.
+
+Ruby, Javascript.
 
 izepeda@nearsoft.com
-
-github.com/keogh
-
 
 ---
